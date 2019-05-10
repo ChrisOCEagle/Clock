@@ -43,9 +43,27 @@ function calendar(date) {
     var year = date.getFullYear();
     var month = date.getMonth();
     var day = date.getDate();
+    var dayOfWeek = date.getDay();
+    var monthOfYear;
+
+    // find the month of year
+    var months = ['January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'];
+    for (let i = 0; i < months.length; i++) {
+        if (i === month) {
+            monthOfYear = months[i];
+        };
+    };
+    // find the day of the week
+    var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    for (let i = 0; i < days.length; i++) {
+        if (i === dayOfWeek) {
+            dayOfWeek = days[i];
+        };
+    };
 
     // display the date on the application
-    document.getElementById("date").innerHTML = month + "/" + day + "/" + year;
+    document.getElementById("date").innerHTML = dayOfWeek + " " + monthOfYear + " " + day + ", " + year;
 };
 
 function ticker(tickVal) {
