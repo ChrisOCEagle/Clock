@@ -67,7 +67,7 @@ function calendar(year, month, day, dayOfWeek, monthOfYear) {
     };
 
     // display the date on the application
-    document.getElementById("date").innerHTML = dayOfWeek + " " + monthOfYear + " " + day + ", " + year;
+    document.getElementById("date").innerHTML = dayOfWeek + " " + monthOfYear + " " + day + ", " + year + " (Eastern Standard Time)";
 };
 
 // create the ticker

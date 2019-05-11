@@ -4,7 +4,7 @@
 }
 
 #digital {
-    width: 15%;
+    width: 20%;
     margin: 0 auto 10px auto;
     padding: 10px;
     border: 4px solid darkgray;
@@ -86,4 +86,14 @@
     left: 49.5%;
     transform-origin: 50% 80%;
     z-index: 8; 
+}
+
+#zero {
+    position: absolute;
+    text-align: center;
+    content: '';
+    left: 46%;
+    width: 5%;
+    height: 5%;
+    font-size: 20px;
 }
