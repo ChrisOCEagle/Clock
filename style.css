@@ -29,7 +29,8 @@
     border-radius: 50%;
     width: 15em;
     height: 15em;
-    margin: auto;
+    margin: 10px auto;
+    padding: 5px;
     position: relative;
     border: 4px solid #000;
     background: #fff;
@@ -55,22 +56,6 @@
     bottom: 0;
     left: 0;
 }
-
-/* #minutes-container, #seconds-container {
-    transition:  transform cubic-bezier(.4, 2.08, .55, .44);
-}
-
-#hours-container {
-    animation: rotate 43200s infinite steps(12);
-}
-
-#minutes-container {
-    transition-duration: 0.3s;
-}
-
-#seconds-container {
-    transition-duration: 0.2s;
-} */
 
 #hour-hand {
     background: #000;
@@ -102,7 +87,3 @@
     transform-origin: 50% 80%;
     z-index: 8; 
 }
-
-/* @keyframes rotate {
-    100% { transform: rotate(360deg); }
-} */
