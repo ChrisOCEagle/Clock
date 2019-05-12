@@ -12,6 +12,30 @@
     background: black;
 }
 
+@media screen and (max-width: 767px) and (min-width: 321px) {
+    #digital {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    #digital {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+    #digital {
+        width: 30%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    #digital {
+        width: 25%;
+    }
+}
+
 #time {
     width: 50%;
     margin: auto;
