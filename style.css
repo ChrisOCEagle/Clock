@@ -87,3 +87,45 @@
     transform-origin: 50% 80%;
     z-index: 8; 
 }
+
+#hashmarks {
+    width: 100%;
+    height: 100%;
+}
+
+#twelve, #three, #six, #nine {
+    position: absolute;
+    border-radius: 8px;
+    background: #000;
+    margin: auto;    
+}
+
+#twelve, #six {
+    width: 8%;
+    height: 13%;
+}
+
+#three, #nine {
+    width: 13%;
+    height: 8%;
+}
+
+#twelve {
+    transform-origin: center top;
+    transform: translate(110px, -8px);
+}
+
+#three {
+    transform-origin: right center;
+    transform: translate(216px, 110px);
+}
+
+#six {
+    transform-origin: center bottom;
+    transform: translate(110px, 216px);
+}
+
+#nine {
+    transform-origin: left center;
+    transform: translate(-8px, 110px);
+}
