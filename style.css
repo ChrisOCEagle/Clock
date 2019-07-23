@@ -112,12 +112,12 @@
     z-index: 8; 
 }
 
-#Hashmarks {
+.hashmarks {
     width: 100%;
     height: 100%;
 }
 
-#Hashmarks > * {
+.hashmarks > * {
     position: absolute;
     border-radius: 8px;
     background: #000;
@@ -126,72 +126,59 @@
     height: 8%;
 }
 
-#twelve {
+.twelve {
     transform-origin: center top; /* centered in x, top in y */
     transform: translate(115px, 6px) rotate(90deg);
 }
 
-#three {
+.three {
     transform-origin: right center;
     transform: translate(-8px, 110px) rotate(0deg);
 }
 
-#six {
+.six {
     transform-origin: center bottom;
     transform: translate(218px, 90px) rotate(180deg);
 }
 
-#nine {
+.nine {
     transform-origin: left center;
     transform: translate(120px, 238px) rotate(270deg);
 }
 
-#hashmarks {
-    width: 100%;
-    height: 100%;
-    background: inherit;
-    border-radius: 0%;
-    position: inherit;
-    margin: auto;
-}
-
-#hashmarks > * {
-    position: absolute;
-    border-radius: 8px;
-    background: #000;
-    margin: auto;
+#small-hashmarks {
     width: 8%;
     height: 4%;
 }
 
-#one {
+.one {
     transform: translate(170px, 11px) rotate(-60deg);
 }
 
-#two {
+.two {
     transform: translate(214px, 56px) rotate(-30deg); 
 }
 
-#four {
+.four {
     transform: translate(213px, 175px) rotate(-330deg); 
 }
 
-#five {
+.five {
     transform: translate(170px, 219px) rotate(-300deg); 
 }
 
-#seven {
+.seven {
     transform: translate(51px, 218px) rotate(-240deg); 
 }
 
-#eight {
+.eight {
     transform: translate(7px, 176px) rotate(-210deg); 
 }
 
-#ten {
+.ten {
     transform: translate(7px, 55px) rotate(-150deg); 
 }
 
-#eleven {
+.eleven {
     transform: translate(50px, 12px) rotate(-120deg); 
 }
