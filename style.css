@@ -56,7 +56,7 @@
     margin: 10px auto;
     padding: 5px;
     position: relative;
-    border: 4px solid #000;
+    border: 5px solid #000;
     background: #fff;
 }
 
@@ -112,12 +112,12 @@
     z-index: 8; 
 }
 
-#hashmarks {
+#Hashmarks {
     width: 100%;
     height: 100%;
 }
 
-#hashmarks > * {
+#Hashmarks > * {
     position: absolute;
     border-radius: 8px;
     background: #000;
@@ -127,7 +127,7 @@
 }
 
 #twelve {
-    transform-origin: center top;
+    transform-origin: center top; /* centered in x, top in y */
     transform: translate(115px, 6px) rotate(90deg);
 }
 
@@ -144,4 +144,54 @@
 #nine {
     transform-origin: left center;
     transform: translate(120px, 238px) rotate(270deg);
+}
+
+#hashmarks {
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: 0%;
+    position: inherit;
+    margin: auto;
+}
+
+#hashmarks > * {
+    position: absolute;
+    border-radius: 8px;
+    background: #000;
+    margin: auto;
+    width: 8%;
+    height: 4%;
+}
+
+#one {
+    transform: translate(170px, 11px) rotate(-60deg);
+}
+
+#two {
+    transform: translate(214px, 56px) rotate(-30deg); 
+}
+
+#four {
+    transform: translate(213px, 175px) rotate(-330deg); 
+}
+
+#five {
+    transform: translate(170px, 219px) rotate(-300deg); 
+}
+
+#seven {
+    transform: translate(51px, 218px) rotate(-240deg); 
+}
+
+#eight {
+    transform: translate(7px, 176px) rotate(-210deg); 
+}
+
+#ten {
+    transform: translate(7px, 55px) rotate(-150deg); 
+}
+
+#eleven {
+    transform: translate(50px, 12px) rotate(-120deg); 
 }
