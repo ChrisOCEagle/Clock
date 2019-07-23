@@ -298,7 +298,6 @@ and (-webkit-device-pixel-ratio: 3) {
 }
 
 #digital {
-    width: 20%;
     margin: 0 auto 10px auto;
     padding: 10px;
     border: 4px solid darkgray;
