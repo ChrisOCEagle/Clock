@@ -1,7 +1,20 @@
-document.onreadystatechange = clocks();
+// determine whether the user wants it to be 12 or 24 hour time
+var userChoice = document.getElementById('hour-adjustment')
 
+userChoice.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (parseInt(this.userChoice.getAttribute('data-hour')) === 12) {
+        this.userChoice.setAttribute('data-hour', 24);
+        this.document.getElementsByTagName('input')[0].setAttribute('checked', '');
+    } else {
+        this.userChoice.setAttribute('data-hour', 12);
+        this.document.getElementsByTagName('input')[0].removeAttribute('checked');
+    };
+});
+
+document.onreadystatechange = clocks();
 function clocks() {
-    const date = new Date();
+    var date = new Date();
 
     digitalClock(date);
     analogClock(date);
@@ -33,18 +46,24 @@ function digitalClock(date) {
 
 // create the time function
 function timer(hour, minute, second) {
+    var hourChoice = userChoice.getAttribute('data-hour');
     // have the minutes and seconds always contain two digits
     minute = ticker(minute);
     second = ticker(second);
 
     // display the time on the application
-    if (hour > 12) {
-        hour = hour - 12;
+    if (parseInt(hourChoice) === 24) {
         document.getElementById("number").innerHTML = hour + ":" + minute + ":" + second;
-        document.getElementById("hour").innerHTML = "PM"
+        document.getElementById("hour").innerHTML = "";
     } else {
-        document.getElementById("number").innerHTML = hour + ":" + minute + ":" + second;
-        document.getElementById("hour").innerHTML = "AM"
+        if (hour > 12) {
+            hour = hour - 12;
+            document.getElementById("number").innerHTML = hour + ":" + minute + ":" + second;
+            document.getElementById("hour").innerHTML = "PM"
+        } else {
+            document.getElementById("number").innerHTML = hour + ":" + minute + ":" + second;
+            document.getElementById("hour").innerHTML = "AM"
+        };        
     };
 };
 
