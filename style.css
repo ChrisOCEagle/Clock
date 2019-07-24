@@ -188,3 +188,25 @@
 .eleven {
     transform: translate(50px, 12px) rotate(-120deg); 
 }
+
+.switch {}
+
+.switch input {}
+
+.slider {}
+
+.slider::before {}
+
+input:checked + .slider {}
+
+input:focus + .slider {}
+
+input:checked + .slider::before {}
+
+#hour-adjustment {}
+
+#twelve, #twenty-four {}
+
+#twelve {}
+
+#twenty-four {}
