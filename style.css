@@ -1,42 +1,42 @@
-/* Android Screen (LG K20) --- Portrait */
-@media screen and (width: 720px) and (height: 1280px) and (orientation: Portrait) {
+@media screen and (max-width: 20em) {
     #digital {
-        width: 35%;
+        width: 70%;
     }
 }
 
-/* Android Screen (LG K20) --- Landscape */
-@media screen and (width: 1280px) and (height: 720px) and (orientation: Landscape) {
-    #digital {
-        width: 20%;
-    }
-}
-
-/* Android Screen (Galaxy S5) --- Portrait */
-@media screen and (width: 360px) and (height: 640px) and (orientation: Portrait) {
+@media screen and (min-width: 22em) and (max-width: 24em) {
     #digital {
         width: 65%;
     }
 }
 
-/* Android Screen (Galaxy S5) --- Landscape */
-@media screen and (width: 640px) and (height: 360px) and (orientation: Landscape) {
+@media screen and (min-width: 25em) and (max-width: 30em) {
+    #digital {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 30em) and (max-width: 36em) {
+    #digital {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 45em) and (max-width: 48em) {
     #digital {
         width: 35%;
     }
 }
 
-/* Iphone screen (6+/7+/8+) --- Portrait */
-@media screen and (width: 414px) and (height: 736px) and (orientation: Portrait) {
+@media screen and (min-width: 64em) and (max-width: 70em) {
     #digital {
-        width: 55%;
+        width: 25%;
     }
 }
 
-/* Iphone screen (6+/7+/8+) --- Landscape */
-@media screen and (width: 736px) and (height: 414px) and (orientation: Landscape) {
+@media screen and (min-width: 75em) {
     #digital {
-        width: 40%;
+        width: 20%;
     }
 }
 
@@ -51,6 +51,7 @@
     border: 4px solid darkgray;
     color: rgb(0, 255, 0);
     background: black;
+    font-size: 16px;
 }
 
 #time {
