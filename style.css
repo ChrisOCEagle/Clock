@@ -189,7 +189,10 @@
     transform: translate(50px, 12px) rotate(-120deg); 
 }
 
-.switch {}
+.switch {
+    position: relative;
+    display: inline-block;
+}
 
 .switch input {}
 
