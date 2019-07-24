@@ -1,16 +1,4 @@
-@media screen and (max-width: 20em) {
-    #digital {
-        width: 70%;
-    }
-}
-
-@media screen and (min-width: 22em) and (max-width: 24em) {
-    #digital {
-        width: 65%;
-    }
-}
-
-@media screen and (min-width: 25em) and (max-width: 30em) {
+@media screen and (max-width: 30em) {
     #digital {
         width: 70%;
     }
