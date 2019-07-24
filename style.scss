@@ -1,0 +1,215 @@
+@media screen and (max-width: 29em) {
+    #digital {
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 30em) and (max-width: 36em) {
+    #digital {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 37em) and (max-width: 48em) {
+    #digital {
+        width: 35%;
+    }
+}
+
+@media screen and (min-width: 49em) and (max-width: 70em) {
+    #digital {
+        width: 25%;
+    }
+}
+
+@media screen and (min-width: 71em) {
+    #digital {
+        width: 20%;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#digital {
+    margin: 0 auto 10px auto;
+    padding: 10px;
+    border: 4px solid darkgray;
+    color: rgb(0, 255, 0);
+    background: black;
+    font-size: 16px;
+}
+
+#time {
+    width: 50%;
+    margin: auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+#date {
+    width: 75%;
+    margin: auto;
+    text-align: center;
+}
+
+#analog {
+    border-radius: 50%;
+    width: 15em;
+    height: 15em;
+    margin: 10px auto;
+    padding: 5px;
+    position: relative;
+    border: 5px solid #000;
+    background: #fff;
+}
+
+#analog::after {
+    background: #000;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    content: "";
+    width: 5%;
+    height: 5%;
+    z-index: 10;
+}
+
+#hours-container, #minutes-container, #seconds-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+#hour-hand {
+    background: #000;
+    height: 20%;
+    width: 2.5%;
+    position: absolute;
+    top: 30%;
+    left: 48.75%;
+    transform-origin: 50% 100%;
+}
+
+#minute-hand {
+    background: #000;
+    height: 40%;
+    width: 2%;
+    position: absolute;
+    top: 10%;
+    left: 49%;
+    transform-origin: 50% 100%;
+}
+
+#second-hand {
+    background: #f00;
+    height: 45%;
+    width: 1%;
+    position: absolute;
+    top: 14%;
+    left: 49.5%;
+    transform-origin: 50% 80%;
+    z-index: 8; 
+}
+
+.hashmarks {
+    width: 100%;
+    height: 100%;
+}
+
+.hashmarks > * {
+    position: absolute;
+    border-radius: 8px;
+    background: #000;
+    margin: auto;
+    width: 12%;
+    height: 8%;
+}
+
+.twelve {
+    transform-origin: center top; /* centered in x, top in y */
+    transform: translate(115px, 6px) rotate(90deg);
+}
+
+.three {
+    transform-origin: right center;
+    transform: translate(-8px, 110px) rotate(0deg);
+}
+
+.six {
+    transform-origin: center bottom;
+    transform: translate(218px, 90px) rotate(180deg);
+}
+
+.nine {
+    transform-origin: left center;
+    transform: translate(120px, 238px) rotate(270deg);
+}
+
+#small-hashmarks {
+    width: 8%;
+    height: 4%;
+}
+
+.one {
+    transform: translate(170px, 11px) rotate(-60deg);
+}
+
+.two {
+    transform: translate(214px, 56px) rotate(-30deg); 
+}
+
+.four {
+    transform: translate(213px, 175px) rotate(-330deg); 
+}
+
+.five {
+    transform: translate(170px, 219px) rotate(-300deg); 
+}
+
+.seven {
+    transform: translate(51px, 218px) rotate(-240deg); 
+}
+
+.eight {
+    transform: translate(7px, 176px) rotate(-210deg); 
+}
+
+.ten {
+    transform: translate(7px, 55px) rotate(-150deg); 
+}
+
+.eleven {
+    transform: translate(50px, 12px) rotate(-120deg); 
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+}
+
+.switch input {}
+
+.slider {}
+
+.slider::before {}
+
+input:checked + .slider {}
+
+input:focus + .slider {}
+
+input:checked + .slider::before {}
+
+#hour-adjustment {}
+
+#twelve, #twenty-four {}
+
+#twelve {}
+
+#twenty-four {}
