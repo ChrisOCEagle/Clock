@@ -2,25 +2,45 @@
   #digital {
     width: 70%;
   }
+
+  #hour-adjustment {
+    width: 100%;
+  }
 }
 @media screen and (min-width: 30em) and (max-width: 36em) {
   #digital {
     width: 50%;
+  }
+
+  #hour-adjustment {
+    width: 100%;
   }
 }
 @media screen and (min-width: 37em) and (max-width: 48em) {
   #digital {
     width: 35%;
   }
+
+  #hour-adjustment {
+    width: 100%;
+  }
 }
 @media screen and (min-width: 49em) and (max-width: 70em) {
   #digital {
     width: 25%;
   }
+
+  #hour-adjustment {
+    width: 100%;
+  }
 }
 @media screen and (min-width: 71em) {
   #digital {
     width: 20%;
+  }
+
+  #hour-adjustment {
+    width: 7%;
   }
 }
 * {
@@ -237,7 +257,6 @@ input:checked + .slider::before {
 }
 
 #hour-adjustment {
-  width: 15%;
   margin: auto;
   padding: 10px 40px 30px 40px;
   display: flex;
