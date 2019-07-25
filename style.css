@@ -13,7 +13,7 @@
   }
 
   #hour-adjustment {
-    width: 100%;
+    width: 20%;
   }
 }
 @media screen and (min-width: 37em) and (max-width: 48em) {
