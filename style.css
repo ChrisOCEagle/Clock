@@ -4,7 +4,7 @@
   }
 
   #hour-adjustment {
-    width: 100%;
+    width: 28%;
   }
 }
 @media screen and (min-width: 30em) and (max-width: 36em) {
@@ -22,7 +22,7 @@
   }
 
   #hour-adjustment {
-    width: 100%;
+    width: 12%;
   }
 }
 @media screen and (min-width: 49em) and (max-width: 70em) {
@@ -31,7 +31,7 @@
   }
 
   #hour-adjustment {
-    width: 100%;
+    width: 9%;
   }
 }
 @media screen and (min-width: 71em) {
