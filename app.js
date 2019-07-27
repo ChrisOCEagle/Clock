@@ -1,18 +1,23 @@
 // determine whether the user wants it to be 12 or 24 hour time
-var userChoice = document.getElementById('hour-adjustment')
+var userChoice = document.getElementById('hour-adjustment');
 
 userChoice.addEventListener('click', (event) => {
     event.preventDefault();
     if (parseInt(this.userChoice.getAttribute('data-hour')) === 12) {
         this.userChoice.setAttribute('data-hour', 24);
         this.document.getElementsByTagName('input')[0].setAttribute('checked', '');
+        this.document.getElementById("time").removeChild(this.document.getElementById("hour"));
     } else {
         this.userChoice.setAttribute('data-hour', 12);
         this.document.getElementsByTagName('input')[0].removeAttribute('checked');
+        var newDiv = this.document.createElement("div");
+        newDiv.setAttribute("id", "hour");
+        this.document.getElementById("time").appendChild(newDiv);
     };
 });
 
 document.onreadystatechange = clocks();
+
 function clocks() {
     var date = new Date();
 
@@ -47,23 +52,28 @@ function digitalClock(date) {
 // create the time function
 function timer(hour, minute, second) {
     var hourChoice = userChoice.getAttribute('data-hour');
+    var timeDiv = document.getElementById("time");
+    var hourDiv = document.getElementById("hour");
     // have the minutes and seconds always contain two digits
     minute = ticker(minute);
     second = ticker(second);
 
     // display the time on the application
     if (parseInt(hourChoice) === 24) {
-        document.getElementById("number").innerHTML = hour + ":" + minute + ":" + second;
-        document.getElementById("hour").innerHTML = "";
+        timeDiv.childNodes[1].innerHTML = hour + ":" + minute + ":" + second;
     } else {
         if (hour > 12) {
             hour = hour - 12;
             document.getElementById("number").innerHTML = hour + ":" + minute + ":" + second;
-            document.getElementById("hour").innerHTML = "PM"
+            hourDiv.innerHTML = "PM";
+        } else if (hour === 0) {
+            hour = hour + 12;
+            document.getElementById("number").innerHTML = hour + ":" + minute + ":" + second;
+            hourDiv.innerHTML = "AM";
         } else {
             document.getElementById("number").innerHTML = hour + ":" + minute + ":" + second;
-            document.getElementById("hour").innerHTML = "AM"
-        };        
+            hourDiv.innerHTML = "AM";
+        };
     };
 };
 
