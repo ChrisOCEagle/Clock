@@ -62,7 +62,7 @@ function timer(hour, minute, second) {
     if (parseInt(hourChoice) === 24) {
         timeDiv.childNodes[1].innerHTML = hour + ":" + minute + ":" + second;
     } else {
-        if (hour > 12) {
+        if (hour >= 12) {
             hour = hour - 12;
             document.getElementById("number").innerHTML = hour + ":" + minute + ":" + second;
             hourDiv.innerHTML = "PM";
