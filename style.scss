@@ -120,10 +120,10 @@
 
 #minute-hand {
     background: #000;
-    height: 40%;
+    height: 35%;
     width: 2%;
     position: absolute;
-    top: 10%;
+    top: 15%;
     left: 49%;
     transform-origin: 50% 100%;
 }
@@ -149,28 +149,28 @@
     border-radius: 8px;
     background: #000;
     margin: auto;
-    width: 12%;
+    width: 10%;
     height: 8%;
 }
 
 .twelve {
     transform-origin: center top; /* centered in x, top in y */
-    transform: translate(115px, 6px) rotate(90deg);
+    transform: translate(118px, 4px) rotate(90deg);
 }
 
 .three {
     transform-origin: right center;
-    transform: translate(-8px, 110px) rotate(0deg);
+    transform: translate(225px, 110px) rotate(0deg);
 }
 
 .six {
     transform-origin: center bottom;
-    transform: translate(218px, 90px) rotate(180deg);
+    transform: translate(117px, 217px) rotate(270deg);
 }
 
 .nine {
     transform-origin: left center;
-    transform: translate(120px, 238px) rotate(270deg);
+    transform: translate(16px, 110px) rotate(180deg);
 }
 
 #small-hashmarks {
