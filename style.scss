@@ -230,6 +230,7 @@ body {
 .slider {
     position: absolute;
     cursor: pointer;
+    border-radius: 25px;
     top: 0;
     right: 0;
     bottom: 0;
@@ -242,6 +243,7 @@ body {
 .slider::before {
     position: absolute;
     content: "";
+    border-radius: 50%;
     height: 26px;
     width: 26px;
     left: 4px;
