@@ -48,6 +48,10 @@
   padding: 0;
 }
 
+body {
+  padding: 25px 0;
+}
+
 #digital {
   margin: 0 auto 10px auto;
   padding: 10px;
