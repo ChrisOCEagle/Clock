@@ -42,11 +42,13 @@ function digitalClock(date) {
     var day = date.getDate();
     var dayOfWeek = date.getDay();
     var monthOfYear;
+    // get the timezone
+    var timezone = date.toString().substr(date.toString().indexOf('('), date.toString().length);
 
     // call the time
     timer(hour, minute, second);
     // call the date
-    calendar(year, month, day, dayOfWeek, monthOfYear);
+    calendar(year, month, day, dayOfWeek, monthOfYear, timezone);
 };
 
 // create the time function
@@ -81,7 +83,7 @@ function timer(hour, minute, second) {
 };
 
 // create the date function
-function calendar(year, month, day, dayOfWeek, monthOfYear) {
+function calendar(year, month, day, dayOfWeek, monthOfYear, timezone) {
     // find the month of year
     var months = ['January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'];
@@ -99,7 +101,7 @@ function calendar(year, month, day, dayOfWeek, monthOfYear) {
     };
 
     // display the date on the application
-    document.getElementById("date").innerHTML = dayOfWeek + " " + monthOfYear + " " + day + ", " + year + " (Eastern Standard Time)";
+    document.getElementById("date").innerHTML = dayOfWeek + " " + monthOfYear + " " + day + ", " + year + " " + timezone;
 };
 
 // create the ticker
