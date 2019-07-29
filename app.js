@@ -63,20 +63,25 @@ function timer(hour, minute, second) {
     // display the time on the application
     if (parseInt(hourChoice) === 24) {
         timeDiv.childNodes[1].innerHTML = hour + ":" + minute + ":" + second;
+        document.getElementById("header-title").innerHTML = hour + ":" + minute + ":" + second;
     } else {
         if (hour > 12) {
             hour = hour - 12;
             document.getElementById("number").innerHTML = hour + ":" + minute + ":" + second;
+            document.getElementById("header-title").innerHTML = hour + ":" + minute + ":" + second + "PM";
             hourDiv.innerHTML = "PM";
         } else if (hour === 12) {
             document.getElementById("number").innerHTML = hour + ":" + minute + ":" + second;
+            document.getElementById("header-title").innerHTML = hour + ":" + minute + ":" + second + "PM";
             hourDiv.innerHTML = "PM";
         } else if (hour === 0) {
             hour = hour + 12;
             document.getElementById("number").innerHTML = hour + ":" + minute + ":" + second;
+            document.getElementById("header-title").innerHTML = hour + ":" + minute + ":" + second + "AM";
             hourDiv.innerHTML = "AM";
         } else {
             document.getElementById("number").innerHTML = hour + ":" + minute + ":" + second;
+            document.getElementById("header-title").innerHTML = hour + ":" + minute + ":" + second + "AM";
             hourDiv.innerHTML = "AM";
         };
     };
@@ -102,6 +107,7 @@ function calendar(year, month, day, dayOfWeek, monthOfYear, timezone) {
 
     // display the date on the application
     document.getElementById("date").innerHTML = dayOfWeek + " " + monthOfYear + " " + day + ", " + year + " " + timezone;
+    document.getElementById("header-title").innerHTML += month + "/" + day + "/" + year;
 };
 
 // create the ticker
