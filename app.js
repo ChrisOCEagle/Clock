@@ -107,7 +107,7 @@ function calendar(year, month, day, dayOfWeek, monthOfYear, timezone) {
 
     // display the date on the application
     document.getElementById("date").innerHTML = dayOfWeek + " " + monthOfYear + " " + day + ", " + year + " " + timezone;
-    document.getElementById("header-title").innerHTML += month + "/" + day + "/" + year;
+    document.getElementById("header-title").innerHTML += " " + month + "/" + day + "/" + year;
 };
 
 // create the ticker
