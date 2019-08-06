@@ -106,7 +106,9 @@ function calendar(year, month, day, dayOfWeek, monthOfYear, timezone) {
     };
 
     // display the date on the application
-    document.getElementById("date").innerHTML = dayOfWeek + " " + monthOfYear + " " + day + ", " + year + " " + timezone;
+    document.getElementById("date-numbers").innerHTML = dayOfWeek + " " + monthOfYear + " " + day + ", " + year;
+    document.getElementById("timezone").innerHTML = timezone;
+    month = month + 1;
     document.getElementById("header-title").innerHTML += " " + month + "/" + day + "/" + year;
 };
 
