@@ -1,3 +1,7 @@
+// determine whether the user wants it to be a clock or a timer
+var timeChoice = document.getElementById('timer');
+console.log(timeChoice);
+
 // determine whether the user wants it to be 12 or 24 hour time
 var userChoice = document.getElementById('hour-adjustment');
 
