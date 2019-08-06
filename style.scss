@@ -295,4 +295,8 @@ input:checked + .slider::before {
 
 #timer {
     margin: auto;
+    padding: 10px 40px 30px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
