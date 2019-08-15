@@ -2,7 +2,6 @@
 var timeChoice = document.getElementById('timer-choice');
 timeChoice.addEventListener('click', (event) => {
     event.preventDefault();
-    console.log()
     if (this.timeChoice.getAttribute('data-timer') === "clock") {
         this.timeChoice.setAttribute('data-timer', 'timer')
         this.document.getElementsByTagName('input')[1].setAttribute('checked', '');
