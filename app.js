@@ -1,5 +1,5 @@
 // determine whether the user wants it to be a clock or a timer
-var timeChoice = document.getElementById('timer');
+var timeChoice = document.getElementById('timer-choice');
 timeChoice.addEventListener('click', (event) => {
     event.preventDefault();
     console.log(this);
