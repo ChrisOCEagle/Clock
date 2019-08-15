@@ -289,7 +289,7 @@ input:checked + .slider::before {
   right: 38px;
 }
 
-#timer {
+#timer-choice {
   margin: auto;
   padding: 10px 40px 30px 40px;
   display: flex;
