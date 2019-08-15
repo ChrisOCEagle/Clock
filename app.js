@@ -2,11 +2,13 @@
 var timeChoice = document.getElementById('timer-choice');
 timeChoice.addEventListener('click', (event) => {
     event.preventDefault();
-    console.log(this.document.getElementsByTagName('input'))
-    if (this.timerChoice.getAttribute("data-timer") === "clock") {
-        
-    } else {
-
+    console.log()
+    if (this.timeChoice.getAttribute('data-timer') === "clock") {
+        this.timeChoice.setAttribute('data-timer', 'timer')
+        this.document.getElementsByTagName('input')[1].setAttribute('checked', '');
+    } else if (this.timeChoice.getAttribute('data-timer') === "timer") {
+        this.timeChoice.setAttribute('data-timer', 'clock')
+        this.document.getElementsByTagName('input')[1].removeAttribute('checked');
     };
 });
 
