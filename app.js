@@ -2,7 +2,12 @@
 var timeChoice = document.getElementById('timer-choice');
 timeChoice.addEventListener('click', (event) => {
     event.preventDefault();
-    console.log(this);
+    console.log(this.document.getElementsByTagName('input'))
+    if (this.timerChoice.getAttribute("data-timer") === "clock") {
+        
+    } else {
+
+    };
 });
 
 // determine whether the user wants it to be 12 or 24 hour time
