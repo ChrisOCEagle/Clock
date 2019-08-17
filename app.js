@@ -1,19 +1,37 @@
 // determine whether the user wants it to be a clock or a timer
-var timeChoice = document.getElementById('timer-choice');
-timeChoice.addEventListener('click', (event) => {
+var clockChoice = document.getElementById('clock-choice');
+clockChoice.addEventListener('click', (event) => {
     event.preventDefault();
-    if (this.timeChoice.getAttribute('data-timer') === "clock") {
-        this.timeChoice.setAttribute('data-timer', 'timer')
+    if (this.clockChoice.getAttribute('data-timer') === "clock") {
+        this.clockChoice.setAttribute('data-timer', 'timer')
         this.document.getElementsByTagName('input')[1].setAttribute('checked', '');
-    } else if (this.timeChoice.getAttribute('data-timer') === "timer") {
-        this.timeChoice.setAttribute('data-timer', 'clock')
+        var hourChoice = this.document.getElementById('hour-choice');
+        setAttributes(hourChoice, {'id': 'timer-choice', 'data-timer': 'countdown'});
+        hourChoice.removeAttribute('data-hour');
+        hourChoice.children[0].setAttribute('id', 'countdown');
+        hourChoice.children[0].innerHTML = '<div>Count</div><div>down</div><div>Timer</div>';
+        hourChoice.children[2].setAttribute('id', 'stopwatch');
+        hourChoice.children[2].innerHTML = '<div>Stop</div><div>watch</div>';
+        hourChoice.removeChild(hourChoice.children[3]);
+    } else if (this.clockChoice.getAttribute('data-timer') === "timer") {
+        this.clockChoice.setAttribute('data-timer', 'clock')
         this.document.getElementsByTagName('input')[1].removeAttribute('checked');
+        var timerChoice = this.document.getElementById("timer-choice");
+        setAttributes(timerChoice, {'id': 'hour-choice', 'data-hour': '12'});
+        timerChoice.removeAttribute('data-timer');
+        timerChoice.children[0].setAttribute('id', 'twelve');
+        timerChoice.children[0].innerHTML = 12;
+        timerChoice.children[2].setAttribute('id', 'twenty-four');
+        timerChoice.children[2].innerHTML = 24;
+        var label = this.document.createElement('span');
+        label.setAttribute('id', 'label');
+        label.innerHTML = 'Hour Time';
+        timerChoice.appendChild(label);
     };
 });
 
 // determine whether the user wants it to be 12 or 24 hour time
-var userChoice = document.getElementById('hour-adjustment');
-
+var userChoice = document.getElementById('hour-choice');
 userChoice.addEventListener('click', (event) => {
     event.preventDefault();
     if (parseInt(this.userChoice.getAttribute('data-hour')) === 12) {
@@ -28,6 +46,12 @@ userChoice.addEventListener('click', (event) => {
         this.document.getElementById("time").appendChild(newDiv);
     };
 });
+
+function setAttributes(element, attributes) {
+    for (let key in attributes) {
+        element.setAttribute(key, attributes[key]);
+    };
+};
 
 document.onreadystatechange = clocks();
 

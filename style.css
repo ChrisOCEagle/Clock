@@ -3,7 +3,7 @@
     width: 70%;
   }
 
-  #hour-adjustment {
+  .btn-switch {
     width: 28%;
   }
 }
@@ -12,7 +12,7 @@
     width: 50%;
   }
 
-  #hour-adjustment {
+  .btn-switch {
     width: 20%;
   }
 }
@@ -21,7 +21,7 @@
     width: 35%;
   }
 
-  #hour-adjustment {
+  .btn-switch {
     width: 12%;
   }
 }
@@ -30,7 +30,7 @@
     width: 25%;
   }
 
-  #hour-adjustment {
+  .btn-switch {
     width: 9%;
   }
 }
@@ -39,7 +39,7 @@
     width: 20%;
   }
 
-  #hour-adjustment {
+  .btn-switch {
     width: 7%;
   }
 }
@@ -262,7 +262,7 @@ input:checked + .slider::before {
   transform: translateX(26px);
 }
 
-#hour-adjustment {
+.btn-switch {
   margin: auto;
   padding: 10px 40px 30px 40px;
   display: flex;
@@ -276,19 +276,32 @@ input:checked + .slider::before {
   bottom: 10px;
 }
 
-#twelve, #twenty-four {
+#twelve, #twenty-four, #countdown, #stopwatch {
   position: absolute;
 }
 
+#countdown, #stopwatch {
+  text-align: center;
+  transform: rotate(-90deg);
+}
+
+#countdown {
+  left: 3px;
+}
+
+#stopwatch {
+  right: 12px;
+}
+
 #twelve {
-  left: 38px;
+  left: 30px;
 }
 
 #twenty-four {
-  right: 38px;
+  right: 30px;
 }
 
-#timer-choice {
+#clock-choice {
   margin: auto;
   padding: 10px 40px 30px 40px;
   display: flex;
