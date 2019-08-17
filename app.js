@@ -3,53 +3,126 @@ var clockChoice = document.getElementById('clock-choice');
 clockChoice.addEventListener('click', (event) => {
     event.preventDefault();
     if (this.clockChoice.getAttribute('data-timer') === "clock") {
-        this.clockChoice.setAttribute('data-timer', 'timer')
-        this.document.getElementsByTagName('input')[1].setAttribute('checked', '');
-        var hourChoice = this.document.getElementById('hour-choice');
-        setAttributes(hourChoice, {'id': 'timer-choice', 'data-timer': 'countdown'});
-        hourChoice.removeAttribute('data-hour');
-        hourChoice.children[0].setAttribute('id', 'countdown');
-        hourChoice.children[0].innerHTML = '<div>Count</div><div>down</div><div>Timer</div>';
-        hourChoice.children[2].setAttribute('id', 'stopwatch');
-        hourChoice.children[2].innerHTML = '<div>Stop</div><div>watch</div>';
-        hourChoice.removeChild(hourChoice.children[3]);
+        clockChoose(this);
     } else if (this.clockChoice.getAttribute('data-timer') === "timer") {
-        this.clockChoice.setAttribute('data-timer', 'clock')
-        this.document.getElementsByTagName('input')[1].removeAttribute('checked');
-        var timerChoice = this.document.getElementById("timer-choice");
-        setAttributes(timerChoice, {'id': 'hour-choice', 'data-hour': '12'});
-        timerChoice.removeAttribute('data-timer');
-        timerChoice.children[0].setAttribute('id', 'twelve');
-        timerChoice.children[0].innerHTML = 12;
-        timerChoice.children[2].setAttribute('id', 'twenty-four');
-        timerChoice.children[2].innerHTML = 24;
-        var label = this.document.createElement('span');
-        label.setAttribute('id', 'label');
-        label.innerHTML = 'Hour Time';
-        timerChoice.appendChild(label);
+        timerChoose(this);
     };
 });
 
-// determine whether the user wants it to be 12 or 24 hour time
-var userChoice = document.getElementById('hour-choice');
-userChoice.addEventListener('click', (event) => {
-    event.preventDefault();
-    if (parseInt(this.userChoice.getAttribute('data-hour')) === 12) {
-        this.userChoice.setAttribute('data-hour', 24);
-        this.document.getElementsByTagName('input')[0].setAttribute('checked', '');
-        this.document.getElementById("time").removeChild(this.document.getElementById("hour"));
-    } else {
-        this.userChoice.setAttribute('data-hour', 12);
-        this.document.getElementsByTagName('input')[0].removeAttribute('checked');
-        var newDiv = this.document.createElement("div");
-        newDiv.setAttribute("id", "hour");
-        this.document.getElementById("time").appendChild(newDiv);
+function clockChoose(obj) {
+    // set the data attribute to be timer
+    obj.clockChoice.setAttribute('data-timer', 'timer');
+    // move the switch
+    var swtch = document.getElementsByTagName('input')[1];
+    swtch.setAttribute('checked', '');
+    // changing the data attributes on the choice switch
+    var hourChoice = document.getElementById('hour-choice'),
+        hourChoiceAttr = {
+            'id': 'timer-choice',
+            'data-timer': 'countdown'
+        };
+    setAttributes(hourChoice, hourChoiceAttr);
+    hourChoice.removeAttribute('data-hour');
+    // set the html for the choice switch
+    var countdownHTML = '<div>Count</div><div>down</div><div>Timer</div>',
+        stopwatchHTML = '<div>Stop</div><div>watch</div>';
+    for (let i = 0; i < hourChoice.children.length; i++) {
+        if (i === 0) {
+            hourChoice.children[i].setAttribute('id', 'countdown');
+            hourChoice.children[i].innerHTML = countdownHTML;
+        } else if (i === 2) {
+            hourChoice.children[i].setAttribute('id', 'stopwatch');
+            hourChoice.children[i].innerHTML = stopwatchHTML;
+        } else if (i !== 1) {
+            hourChoice.removeChild(hourChoice.children[i]);
+        };
     };
-});
+    // change the digital clock's id to be timer
+    var digital = document.getElementsByClassName('clock')[0];
+    digital.setAttribute('id', 'timer');
+    // remove the date element from the digital clock
+    digital.removeChild(digital.children[1]);
+    digital.removeChild(digital.children[0]);
+};
+
+function timerChoose(obj) {
+    // set the data attribute to be clock
+    obj.clockChoice.setAttribute('data-timer', 'clock');
+    // move the switch
+    var swtch = document.getElementsByTagName('input')[1];
+    swtch.removeAttribute('checked');
+    // changing the data attributes on the choice switch
+    var timerChoice = document.getElementById("timer-choice"),
+        timerChoiceAttr = {
+            'id': 'hour-choice',
+            'data-hour': '12'
+        };
+    setAttributes(timerChoice, timerChoiceAttr);
+    timerChoice.removeAttribute('data-timer');
+    // set the html for the choice switch
+    for (let i = 0; i < timerChoice.children.length; i++) {
+        if (i === 0) {
+            timerChoice.children[i].setAttribute('id', 'twelve');
+            timerChoice.children[i].innerHTML = 12;
+        } else if (i === 2) {
+            timerChoice.children[i].setAttribute('id', 'twenty-four');
+            timerChoice.children[i].innerHTML = 24;
+        };
+    };
+    // add the label to the hour switch
+    var label = document.createElement('span');
+    label.setAttribute('id', 'label');
+    label.innerHTML = 'Hour Time';
+    timerChoice.appendChild(label);
+    // add the date to the digital clock
+    var digitalTimer = document.getElementsByClassName('clock')[0];
+    digitalTimer.setAttribute('id', 'digital');
+    var dateDiv = document.createElement('div');
+    dateDiv.setAttribute('id', 'date');
+    var dateNumbersDiv = document.createElement('div');
+    dateNumbersDiv.setAttribute('id', 'date-numbers');
+    var timezoneDiv = document.createElement('div');
+    timezoneDiv.setAttribute('id', 'timezone');
+    appendChildren(dateDiv, [dateNumbersDiv, timezoneDiv]);
+    // add the time to the digital clock
+    var timeDiv = document.createElement('div');
+    timeDiv.setAttribute('id', 'time');
+    var numberDiv = document.createElement('div');
+    numberDiv.setAttribute('id', 'number');
+    var hourDiv = document.createElement('div');
+    hourDiv.setAttribute('id', 'hour');
+    appendChildren(timeDiv, [numberDiv, hourDiv]);
+    appendChildren(digitalTimer, [timeDiv, dateDiv]);
+};
+
+// determine whether the user wants it to be 12 or 24 hour time
+var userChoice = document.getElementsByClassName('btn-switch')[0];
+userChoice.addEventListener('click', hourSwitch);
+
+function hourSwitch(event) {
+    event.preventDefault();
+    if (parseInt(this.getAttribute('data-hour')) === 12) {
+        this.setAttribute('data-hour', 24);
+        this.getElementsByTagName('input')[0].setAttribute('checked', '');
+        document.getElementById("time").removeChild(document.getElementById("hour"));
+    } else {
+        this.setAttribute('data-hour', 12);
+        this.getElementsByTagName('input')[0].removeAttribute('checked');
+        var newDiv = document.createElement("div");
+        newDiv.setAttribute("id", "hour");
+        document.getElementById("time").appendChild(newDiv);
+    };
+};
 
 function setAttributes(element, attributes) {
     for (let key in attributes) {
         element.setAttribute(key, attributes[key]);
+    };
+};
+
+function appendChildren(element, children) {
+    for (let key in children) {
+        element.appendChild(children[key]);
     };
 };
 
@@ -58,7 +131,7 @@ document.onreadystatechange = clocks();
 function clocks() {
     var date = new Date();
 
-    digitalClock(date);
+    document.getElementById("digital") ? digitalClock(date) : () => {};
     analogClock(date);
 
     // have the clock increment every second

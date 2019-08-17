@@ -1,5 +1,5 @@
 @media screen and (max-width: 29em) {
-    #digital {
+    #digital, #timer {
         width: 70%;
     }
 
@@ -9,7 +9,7 @@
 }
 
 @media screen and (min-width: 30em) and (max-width: 36em) {
-    #digital {
+    #digital, #timer {
         width: 50%;
     }
 
@@ -19,7 +19,7 @@
 }
 
 @media screen and (min-width: 37em) and (max-width: 48em) {
-    #digital {
+    #digital, #timer {
         width: 35%;
     }
 
@@ -29,7 +29,7 @@
 }
 
 @media screen and (min-width: 49em) and (max-width: 70em) {
-    #digital {
+    #digital, #timer {
         width: 25%;
     }
 
@@ -39,7 +39,7 @@
 }
 
 @media screen and (min-width: 71em) {
-    #digital {
+    #digital, #timer {
         width: 20%;
     }
 
@@ -57,7 +57,7 @@ body {
     padding: 25px 0;
 }
 
-#digital {
+#digital, #timer {
     margin: 0 auto 10px auto;
     padding: 10px;
     border: 4px solid darkgray;
