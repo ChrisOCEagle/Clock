@@ -280,11 +280,11 @@ input:checked + .slider::before {
     bottom: 10px;
 }
 
-#twelve, #twenty-four, #countdown, #stopwatch {
+#twelve, #twenty-four, #countdown, #stopwatch-timer {
     position: absolute;
 }
 
-#countdown, #stopwatch {
+#countdown, #stopwatch-timer {
     text-align: center;
     transform: rotate(-90deg);
 }
@@ -293,7 +293,7 @@ input:checked + .slider::before {
     left: 10px;
 }
 
-#stopwatch {
+#stopwatch-timer {
     right: 12px;
 }
 

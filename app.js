@@ -22,24 +22,19 @@ function clockChoose(obj) {
     let hourChoice = document.getElementById('hour-choice'),
         hourChoiceAttr = {
             'id': 'timer-choice',
-            'data-timer': 'countdown'
+            'data-timer-type': 'countdown'
         };
     setAttributes(hourChoice, hourChoiceAttr);
     hourChoice.removeAttribute('data-hour');
     // set the html for the choice switch
     let countdownHTML = '<div>Count</div><div>down</div>',
-        stopwatchHTML = '<div>Stop</div><div>watch</div>';
-    for (let i = 0; i < hourChoice.children.length; i++) {
-        if (i === 0) {
-            hourChoice.children[i].setAttribute('id', 'countdown');
-            hourChoice.children[i].innerHTML = countdownHTML;
-        } else if (i === 2) {
-            hourChoice.children[i].setAttribute('id', 'stopwatch');
-            hourChoice.children[i].innerHTML = stopwatchHTML;
-        } else if (i !== 1) {
-            hourChoice.children[i].innerHTML = 'Timer Type';
-        };
-    };
+        stopwatchHTML = '<div>Stop</div><div>watch</div>',
+        choiceArr = [
+            {'id': 'countdown', 'html': countdownHTML},
+            {'id': 'stopwatch-timer', 'html': stopwatchHTML},
+            {'label': 'Timer Type'}
+        ];
+    choiceSwitchHTML(hourChoice.children, choiceArr);
     // change the digital clock's id to be timer
     let digital = document.getElementsByClassName('clock')[0];
     digital.setAttribute('id', 'timer');
@@ -51,7 +46,7 @@ function clockChoose(obj) {
     // check if the button switch is checked
     let btnSwitch = hourChoice.getElementsByTagName('input')[0];
     if (btnSwitch.attributes.length > 1) {
-        hourChoice.setAttribute('data-timer', 'stopwatch');
+        hourChoice.setAttribute('data-timer-type', 'stopwatch');
     };
 };
 
@@ -69,21 +64,16 @@ function timerChoose(obj) {
         timerChoiceAttr = {
             'id': 'hour-choice',
             'data-hour': '12'
-        };
+        },
+        choiceArr = [
+            {'id': 'twelve', 'html': 12},
+            {'id': 'twenty-four', 'html': 24},
+            {'label': 'Hour Time'}
+        ];
     setAttributes(timerChoice, timerChoiceAttr);
-    timerChoice.removeAttribute('data-timer');
+    timerChoice.removeAttribute('data-timer-type');
     // set the html for the choice switch
-    for (let i = 0; i < timerChoice.children.length; i++) {
-        if (i === 0) {
-            timerChoice.children[i].setAttribute('id', 'twelve');
-            timerChoice.children[i].innerHTML = 12;
-        } else if (i === 2) {
-            timerChoice.children[i].setAttribute('id', 'twenty-four');
-            timerChoice.children[i].innerHTML = 24;
-        } else if (i !== 1) {
-            timerChoice.children[i].innerHTML = 'Hour Time';
-        };
-    };
+    choiceSwitchHTML(timerChoice.children, choiceArr);
     // grab the timer and change it to the digital clock
     let digitalTimer = document.getElementsByClassName('clock')[0];
     digitalTimer.setAttribute('id', 'digital');
@@ -106,6 +96,51 @@ function timerChoose(obj) {
     if (btnSwitch.attributes.length > 1) {
         timerChoice.setAttribute('data-hour', '24');
         digitalTimer.children[0].removeChild(digitalTimer.children[0].children[1]);
+    };
+};
+
+// set the html for the choice switch
+function choiceSwitchHTML(arr, arrObj) {
+    for (let i = 0; i < arr.length; i++) {
+        if (i !== 1) {
+            if (i === 0 || i === 2) {
+                for (let j = 0; j < arrObj.length; j++) {
+                    for (let key in arrObj[j]) {
+                        if (key !== 'label') {
+                            if (key === 'id') {
+                                if (arrObj[j][key].includes('-') && arr[i].attributes[0].value.includes('-')) {
+                                    arr[i].setAttribute(key, arrObj[j][key]);    
+                                } else if (!arrObj[j][key].includes('-') && !arr[i].attributes[0].value.includes('-')) {
+                                    arr[i].setAttribute(key, arrObj[j][key]);    
+                                };
+                            } else {
+                                if (typeof arrObj[j][key] === 'string') {
+                                    if (arrObj[j][key].toLowerCase().includes('count') && arr[i].attributes[0].value.includes('count')) {
+                                        arr[i].innerHTML = arrObj[j][key];                    
+                                    } else if (!arrObj[j][key].toLowerCase().includes('count') && !arr[i].attributes[0].value.includes('count')) {
+                                        arr[i].innerHTML = arrObj[j][key];                    
+                                    };
+                                } else {
+                                    if (arrObj[j][key] === 12 && !arr[i].attributes[0].value.includes('-')) {
+                                        arr[i].innerHTML = arrObj[j][key];                    
+                                    } else if (arrObj[j][key] !== 12 && arr[i].attributes[0].value.includes('-')) {
+                                        arr[i].innerHTML = arrObj[j][key];                    
+                                    };
+                                };
+                            };
+                        };
+                    };
+                };        
+            } else {
+                for (let j = 0; j < arrObj.length; j++) {
+                    for (let key in arrObj[j]) {
+                        if (key === 'label') {
+                            arr[i].innerHTML = arrObj[j][key];    
+                        };
+                    };
+                };        
+            };
+        };
     };
 };
 
@@ -143,14 +178,14 @@ function hourSwitch(event) {
 function timerSwitch(event) {
     event.preventDefault();
     let timerDiv = document.getElementById('timer');
-    if (this.getAttribute('data-timer') === 'countdown') {
-        this.setAttribute('data-timer', 'stopwatch');
+    if (this.getAttribute('data-timer-type') === 'countdown') {
+        this.setAttribute('data-timer-type', 'stopwatch');
         this.getElementsByTagName('input')[0].setAttribute('checked', '');
         let stopwatchDiv = elementID('div', 'stopwatch-timer');
         removeChildren(timerDiv);
         timerDiv.appendChild(stopwatchDiv);
-    } else if (this.getAttribute('data-timer') === 'stopwatch') {
-        this.setAttribute('data-timer', 'countdown');
+    } else if (this.getAttribute('data-timer-type') === 'stopwatch') {
+        this.setAttribute('data-timer-type', 'countdown');
         this.getElementsByTagName('input')[0].removeAttribute('checked');
         let countdownDiv = elementID('div', 'countdown-timer');
         removeChildren(timerDiv);
@@ -175,7 +210,14 @@ document.onreadystatechange = clocks();
 function clocks() {
     let date = new Date();
 
-    document.getElementById("digital") ? digitalClock(date) : () => {};
+    if (document.getElementById("digital") !== null) {
+        digitalClock(date);
+    } else if (document.getElementById("countdown-timer") !== null) {
+        countdownTimer(date);    
+    } else {
+        stopwatchTimer(date);
+    };
+
     analogClock(date);
 
     // have the clock increment every second
@@ -203,6 +245,16 @@ function digitalClock(date) {
     timer(hour, minute, second);
     // call the date
     calendar(year, month, day, dayOfWeek, monthOfYear, timezone);
+};
+
+// create the countdown timer
+function countdownTimer(date) {
+    console.log(date)
+};
+
+// create the stopwatch
+function stopwatchTimer(date) {
+    console.log(date)
 };
 
 // create the time function
