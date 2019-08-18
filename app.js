@@ -84,12 +84,6 @@ function timerChoose(obj) {
             timerChoice.children[i].innerHTML = 'Hour Time';
         };
     };
-    // add the label to the hour switch
-/*
-    let label = elementID('span', 'label');
-    label.innerHTML = 'Hour Time';
-    timerChoice.appendChild(label);
-*/
     // grab the timer and change it to the digital clock
     let digitalTimer = document.getElementsByClassName('clock')[0];
     digitalTimer.setAttribute('id', 'digital');
