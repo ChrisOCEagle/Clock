@@ -27,7 +27,7 @@ function clockChoose(obj) {
     setAttributes(hourChoice, hourChoiceAttr);
     hourChoice.removeAttribute('data-hour');
     // set the html for the choice switch
-    let countdownHTML = '<div>Count</div><div>down</div><div>Timer</div>',
+    let countdownHTML = '<div>Count</div><div>down</div>',
         stopwatchHTML = '<div>Stop</div><div>watch</div>';
     for (let i = 0; i < hourChoice.children.length; i++) {
         if (i === 0) {
@@ -37,7 +37,7 @@ function clockChoose(obj) {
             hourChoice.children[i].setAttribute('id', 'stopwatch');
             hourChoice.children[i].innerHTML = stopwatchHTML;
         } else if (i !== 1) {
-            hourChoice.removeChild(hourChoice.children[i]);
+            hourChoice.children[i].innerHTML = 'Timer Type';
         };
     };
     // change the digital clock's id to be timer
@@ -80,12 +80,16 @@ function timerChoose(obj) {
         } else if (i === 2) {
             timerChoice.children[i].setAttribute('id', 'twenty-four');
             timerChoice.children[i].innerHTML = 24;
+        } else if (i !== 1) {
+            timerChoice.children[i].innerHTML = 'Hour Time';
         };
     };
     // add the label to the hour switch
+/*
     let label = elementID('span', 'label');
     label.innerHTML = 'Hour Time';
     timerChoice.appendChild(label);
+*/
     // grab the timer and change it to the digital clock
     let digitalTimer = document.getElementsByClassName('clock')[0];
     digitalTimer.setAttribute('id', 'digital');

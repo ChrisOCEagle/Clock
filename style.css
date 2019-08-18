@@ -286,7 +286,7 @@ input:checked + .slider::before {
 }
 
 #countdown {
-  left: 3px;
+  left: 10px;
 }
 
 #stopwatch {
