@@ -51,9 +51,7 @@ function clockChoose(obj) {
     // check if the button switch is checked
     let btnSwitch = hourChoice.getElementsByTagName('input')[0];
     if (btnSwitch.attributes.length > 1) {
-        let dataAttr = hourChoice.getAttribute('data-timer');
-        console.log(dataAttr, typeof dataAttr)
-        // dataAttr.value = 'stopwatch';
+        hourChoice.setAttribute('data-timer', 'stopwatch');
     };
 };
 
@@ -108,9 +106,8 @@ function timerChoose(obj) {
     // check if the button switch is checked
     let btnSwitch = timerChoice.getElementsByTagName('input')[0];
     if (btnSwitch.attributes.length > 1) {
-        let dataAttr = timerChoice.getAttribute('data-hour');
-        console.log(dataAttr, typeof dataAttr)
-        // dataAttr.value = 24;
+        timerChoice.setAttribute('data-hour', '24');
+        digitalTimer.children[0].removeChild(digitalTimer.children[0].children[1]);
     };
 };
 
