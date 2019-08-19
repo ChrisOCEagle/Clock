@@ -269,9 +269,9 @@ function clocks() {
     if (document.getElementById("digital") !== null) {
         digitalClock({times, dates});
     } else if (document.getElementById("countdown-timer") !== null) {
-        countdownTimer({times, dates});    
+        countdownTimer();    
     } else {
-        stopwatchTimer({times, dates});
+        stopwatchTimer();
     };
 
     analogClock(times);
@@ -290,13 +290,13 @@ function digitalClock(date) {
 };
 
 // create the countdown timer
-function countdownTimer(date) {
-    console.log(date)
+function countdownTimer() {
+    console.log('Here is a countdown timer')
 };
 
 // create the stopwatch
-function stopwatchTimer(date) {
-    console.log(date)
+function stopwatchTimer() {
+    console.log('Here is a stopwatch')
 };
 
 // create the time function
