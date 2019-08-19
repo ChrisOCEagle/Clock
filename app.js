@@ -165,10 +165,12 @@ function hourSwitch(event) {
     let timeDiv = document.getElementById('time');
     if (parseInt(this.getAttribute('data-hour')) === 12) {
         this.setAttribute('data-hour', 24);
+        document.getElementById('header-title').setAttribute('data-hour', 24);
         this.getElementsByTagName('input')[0].setAttribute('checked', '');
         timeDiv.removeChild(document.getElementById("hour"));
     } else {
         this.setAttribute('data-hour', 12);
+        document.getElementById('header-title').setAttribute('data-hour', 12);
         this.getElementsByTagName('input')[0].removeAttribute('checked');
         let hourDiv = elementID('div', 'hour');
         timeDiv.appendChild(hourDiv);
@@ -180,12 +182,14 @@ function timerSwitch(event) {
     let timerDiv = document.getElementById('timer');
     if (this.getAttribute('data-timer-type') === 'countdown') {
         this.setAttribute('data-timer-type', 'stopwatch');
+        document.getElementById('header-title').setAttribute('data-hour', 24);
         this.getElementsByTagName('input')[0].setAttribute('checked', '');
         let stopwatchDiv = elementID('div', 'stopwatch-timer');
         removeChildren(timerDiv);
         timerDiv.appendChild(stopwatchDiv);
     } else if (this.getAttribute('data-timer-type') === 'stopwatch') {
         this.setAttribute('data-timer-type', 'countdown');
+        document.getElementById('header-title').setAttribute('data-hour', 12);
         this.getElementsByTagName('input')[0].removeAttribute('checked');
         let countdownDiv = elementID('div', 'countdown-timer');
         removeChildren(timerDiv);
@@ -209,28 +213,20 @@ document.onreadystatechange = clocks();
 
 function clocks() {
     let date = new Date();
+    let hourChoice = userChoice.getAttribute('data-hour');
+    let headerChoice = document.getElementById('header-title');
+    let headerHourChoice = headerChoice.getAttribute('data-hour');
 
-    if (document.getElementById("digital") !== null) {
-        digitalClock(date);
-    } else if (document.getElementById("countdown-timer") !== null) {
-        countdownTimer(date);    
-    } else {
-        stopwatchTimer(date);
-    };
-
-    analogClock(date);
-
-    // have the clock increment every second
-    let time;
-    time = setTimeout(clocks, 1000);    
-};
-
-// create the digital clock
-function digitalClock(date) {
     // grab the hours, minutes, and seconds
     let hour = date.getHours();
     let minute = date.getMinutes();
     let second = date.getSeconds();
+    let times = {
+        hour,
+        minute,
+        second,
+        hourChoice,
+    };
 
     // grab the year, month, and day
     let year = date.getFullYear();
@@ -240,11 +236,57 @@ function digitalClock(date) {
     let monthOfYear;
     // get the timezone
     let timezone = date.toString().substr(date.toString().indexOf('('), date.toString().length);
+    let dates = {
+        year,
+        month,
+        day,
+        dayOfWeek,
+        monthOfYear,
+        timezone,
+    };
 
+    // display the time on the application
+    if (parseInt(headerHourChoice) === 24) {
+        headerChoice.innerHTML = hour + ":" + minute + ":" + second;
+    } else {
+        if (hour > 12) {
+            hour = hour - 12;
+            headerChoice.innerHTML = hour + ":" + minute + ":" + second + "PM";
+        } else if (hour === 12) {
+            headerChoice.innerHTML = hour + ":" + minute + ":" + second + "PM";
+        } else if (hour === 0) {
+            hour = hour + 12;
+            headerChoice.innerHTML = hour + ":" + minute + ":" + second + "AM";
+            hourDiv.innerHTML = "AM";
+        } else {
+            headerChoice.innerHTML = hour + ":" + minute + ":" + second + "AM";
+        };
+    };
+
+    month = month + 1;
+    headerChoice.innerHTML += " " + month + "/" + day + "/" + year;
+
+    if (document.getElementById("digital") !== null) {
+        digitalClock({times, dates});
+    } else if (document.getElementById("countdown-timer") !== null) {
+        countdownTimer({times, dates});    
+    } else {
+        stopwatchTimer({times, dates});
+    };
+
+    analogClock(times);
+
+    // have the clock increment every second
+    let time;
+    time = setTimeout(clocks, 1000);    
+};
+
+// create the digital clock
+function digitalClock(date) {
     // call the time
-    timer(hour, minute, second);
+    timer(date.times);
     // call the date
-    calendar(year, month, day, dayOfWeek, monthOfYear, timezone);
+    calendar(date.dates);
 };
 
 // create the countdown timer
@@ -258,8 +300,13 @@ function stopwatchTimer(date) {
 };
 
 // create the time function
-function timer(hour, minute, second) {
-    let hourChoice = userChoice.getAttribute('data-hour');
+function timer(times) {
+    // grab the hours, minutes, and seconds
+    let hour = times.hour;
+    let minute = times.minute;
+    let second = times.second;
+    let hourChoice = times.hourChoice;
+
     let timeDiv = document.getElementById("time");
     let hourDiv = document.getElementById("hour");
     // have the minutes and seconds always contain two digits
@@ -269,32 +316,36 @@ function timer(hour, minute, second) {
     // display the time on the application
     if (parseInt(hourChoice) === 24) {
         timeDiv.children[0].innerHTML = hour + ":" + minute + ":" + second;
-        document.getElementById("header-title").innerHTML = hour + ":" + minute + ":" + second;
     } else {
         if (hour > 12) {
             hour = hour - 12;
             document.getElementById("number").innerHTML = hour + ":" + minute + ":" + second;
-            document.getElementById("header-title").innerHTML = hour + ":" + minute + ":" + second + "PM";
             hourDiv.innerHTML = "PM";
         } else if (hour === 12) {
             document.getElementById("number").innerHTML = hour + ":" + minute + ":" + second;
-            document.getElementById("header-title").innerHTML = hour + ":" + minute + ":" + second + "PM";
             hourDiv.innerHTML = "PM";
         } else if (hour === 0) {
             hour = hour + 12;
             document.getElementById("number").innerHTML = hour + ":" + minute + ":" + second;
-            document.getElementById("header-title").innerHTML = hour + ":" + minute + ":" + second + "AM";
             hourDiv.innerHTML = "AM";
         } else {
             document.getElementById("number").innerHTML = hour + ":" + minute + ":" + second;
-            document.getElementById("header-title").innerHTML = hour + ":" + minute + ":" + second + "AM";
             hourDiv.innerHTML = "AM";
         };
     };
 };
 
 // create the date function
-function calendar(year, month, day, dayOfWeek, monthOfYear, timezone) {
+function calendar(dates) {
+    // grab the year, month, and day
+    let year = dates.year;
+    let month = dates.month;
+    let day = dates.day;
+    let dayOfWeek = dates.dayOfWeek;
+    let monthOfYear = dates.monthOfYear;
+    // get the timezone
+    let timezone = dates.timezone;
+
     // find the month of year
     let months = ['January', 'February', 'March', 'April', 'May', 'June',
         'July', 'August', 'September', 'October', 'November', 'December'];
@@ -314,8 +365,8 @@ function calendar(year, month, day, dayOfWeek, monthOfYear, timezone) {
     // display the date on the application
     document.getElementById("date-numbers").innerHTML = dayOfWeek + " " + monthOfYear + " " + day + ", " + year;
     document.getElementById("timezone").innerHTML = timezone;
-    month = month + 1;
-    document.getElementById("header-title").innerHTML += " " + month + "/" + day + "/" + year;
+    // month = month + 1;
+    // document.getElementById("header-title").innerHTML += " " + month + "/" + day + "/" + year;
 };
 
 // create the ticker
@@ -327,10 +378,10 @@ function ticker(tickVal) {
 };
 
 // create the analog clock
-function analogClock(date) {
-    let second = date.getSeconds(); // a number that represents the current seconds from 0-59
-    let minute = date.getMinutes(); // a number that represents the current minutes from 0-59
-    let hour = date.getHours(); // a number that represents the current hour from 0-23
+function analogClock(times) {
+    let second = times.second; // a number that represents the current seconds from 0-59
+    let minute = times.minute; // a number that represents the current minutes from 0-59
+    let hour = times.hour; // a number that represents the current hour from 0-23
 
     // create an object for each hand that contains its angle in degrees
     let hands = [
