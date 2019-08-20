@@ -1,4 +1,5 @@
 const domManipulator = {
+    
     setAttributes: (element, attributes) => {
         for (let key in attributes) {
             element.setAttribute(key, attributes[key]);
@@ -26,6 +27,7 @@ const domManipulator = {
         };
         return newElement;    
     },
+    
 };
 
 // determine whether the user wants it to be a clock or a timer
@@ -41,10 +43,10 @@ clockChoice.addEventListener('click', (event) => {
 
 function clockChoose(obj) {
     // set the data attribute to be timer
-    obj.clockChoice.setAttribute('data-timer', 'timer');
+    domManipulator.setAttributes(obj.clockChoice, {'data-timer': 'timer'});
     // move the switch
     let swtch = document.getElementsByTagName('input')[1];
-    swtch.setAttribute('checked', '');
+    domManipulator.setAttributes(swtch, {'checked': ''});
     // remove the click event on the switch
     userChoice.removeEventListener('click', hourSwitch);
     userChoice.addEventListener('click', timerSwitch);
@@ -54,7 +56,7 @@ function clockChoose(obj) {
             'id': 'timer-choice',
             'data-timer-type': 'countdown'
         };
-    setAttributes(hourChoice, hourChoiceAttr);
+    domManipulator.setAttributes(hourChoice, hourChoiceAttr);
     // hourChoice.setAttributes(hourChoiceAttr);
     hourChoice.removeAttribute('data-hour');
     // set the html for the choice switch
@@ -70,10 +72,10 @@ function clockChoose(obj) {
     let digital = document.getElementsByClassName('clock')[0];
     digital.setAttribute('id', 'timer');
     // remove the children from the digital clock
-    removeChildren(digital);
+    domManipulation.removeChildren(digital);
     // add the countdown div for the digital timer
     let countdownDiv = elementCreator('div', 'countdown-timer');
-    appendChildren(digital, [countdownDiv]);
+    domManipulation.appendChildren(digital, [countdownDiv]);
     // check if the button switch is checked
     let btnSwitch = hourChoice.getElementsByTagName('input')[0];
     if (btnSwitch.attributes.length > 1) {
@@ -118,7 +120,7 @@ function timerChoose(obj) {
             {'id': 'twenty-four', 'html': 24},
             {'label': 'Hour Time'}
         ];
-    setAttributes(timerChoice, timerChoiceAttr);
+    domManipulation.setAttributes(timerChoice, timerChoiceAttr);
     // timerChoice.setAttributes(timerChoiceAttr);
     timerChoice.removeAttribute('data-timer-type');
     // set the html for the choice switch
@@ -127,19 +129,19 @@ function timerChoose(obj) {
     let digitalTimer = document.getElementsByClassName('clock')[0];
     digitalTimer.setAttribute('id', 'digital');
     // create the date div
-    let dateDiv = elementCreator('div', 'date');
-    let dateNumbersDiv = elementCreator('div', 'date-numbers');
-    let timezoneDiv = elementCreator('div', 'timezone');
-    appendChildren(dateDiv, [dateNumbersDiv, timezoneDiv]);
+    let dateDiv = domManipulation.elementCreator('div', 'date');
+    let dateNumbersDiv = domManipulation.elementCreator('div', 'date-numbers');
+    let timezoneDiv = domManipulation.elementCreator('div', 'timezone');
+    domManipulation.appendChildren(dateDiv, [dateNumbersDiv, timezoneDiv]);
     // create the time div
-    let timeDiv = elementCreator('div', 'time');
-    let numberDiv = elementCreator('div', 'number');
-    let hourDiv = elementCreator('div', 'hour');
-    appendChildren(timeDiv, [numberDiv, hourDiv]);
+    let timeDiv = domManipulation.elementCreator('div', 'time');
+    let numberDiv = domManipulation.elementCreator('div', 'number');
+    let hourDiv = domManipulation.elementCreator('div', 'hour');
+    domManipulation.appendChildren(timeDiv, [numberDiv, hourDiv]);
     // clear the content before adding the new content
-    removeChildren(digitalTimer);
+    domManipulation.removeChildren(digitalTimer);
     // add the date and time to the digital clock
-    appendChildren(digitalTimer, [timeDiv, dateDiv]);
+    domManipulation.appendChildren(digitalTimer, [timeDiv, dateDiv]);
     // check if the button switch is checked
     let btnSwitch = timerChoice.getElementsByTagName('input')[0];
     if (btnSwitch.attributes.length > 1) {
@@ -211,7 +213,7 @@ function hourSwitch(event) {
         this.setAttribute('data-hour', 12);
         document.getElementById('header-title').setAttribute('data-hour', 12);
         this.getElementsByTagName('input')[0].removeAttribute('checked');
-        let hourDiv = elementCreator('div', 'hour');
+        let hourDiv = domManipulator.elementCreator('div', 'hour');
         timeDiv.appendChild(hourDiv);
     };
 };
@@ -223,15 +225,15 @@ function timerSwitch(event) {
         this.setAttribute('data-timer-type', 'stopwatch');
         document.getElementById('header-title').setAttribute('data-hour', 24);
         this.getElementsByTagName('input')[0].setAttribute('checked', '');
-        let stopwatchDiv = elementCreator('div', 'stopwatch-timer');
-        removeChildren(timerDiv);
+        let stopwatchDiv = domManipulation.elementCreator('div', 'stopwatch-timer');
+        domManipulation.removeChildren(timerDiv);
         timerDiv.appendChild(stopwatchDiv);
     } else if (this.getAttribute('data-timer-type') === 'stopwatch') {
         this.setAttribute('data-timer-type', 'countdown');
         document.getElementById('header-title').setAttribute('data-hour', 12);
         this.getElementsByTagName('input')[0].removeAttribute('checked');
-        let countdownDiv = elementCreator('div', 'countdown-timer');
-        removeChildren(timerDiv);
+        let countdownDiv = domManipulation.elementCreator('div', 'countdown-timer');
+        domManipulation.removeChildren(timerDiv);
         timerDiv.appendChild(countdownDiv);
     };
 };
