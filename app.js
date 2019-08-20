@@ -1,3 +1,33 @@
+const domManipulator = {
+    setAttributes: (element, attributes) => {
+        for (let key in attributes) {
+            element.setAttribute(key, attributes[key]);
+        };
+    },
+
+    appendChildren: (element, children) => {
+        for (let key in children) {
+            element.appendChild(children[key]);
+        };
+    },
+
+    removeChildren: (element) => {
+        while(element.firstChild) {
+            element.removeChild(element.firstChild);
+        };    
+    },
+
+    elementCreator: (element, id, className) => {
+        var newElement = document.createElement(element);
+        if (className === null) {
+            newElement.setAttribute('id', id);
+        } else {
+            this.setAttributes(newElement, {'class': className, 'id': id});
+        };
+        return newElement;    
+    },
+};
+
 // determine whether the user wants it to be a clock or a timer
 var clockChoice = document.getElementById('clock-choice');
 clockChoice.addEventListener('click', (event) => {
@@ -204,40 +234,6 @@ function timerSwitch(event) {
         removeChildren(timerDiv);
         timerDiv.appendChild(countdownDiv);
     };
-};
-
-// Object.prototype.setAttributes = (attributes) => {
-//     for (let key in attributes) {
-//         this.setAttribute(key, attributes[key]);
-//     };    
-// };
-function setAttributes(element, attributes) {
-    for (let key in attributes) {
-        element.setAttribute(key, attributes[key]);
-    };
-};
-
-function appendChildren(element, children) {
-    for (let key in children) {
-        element.appendChild(children[key]);
-    };
-};
-
-function removeChildren(element) {
-    while(element.firstChild) {
-        element.removeChild(element.firstChild);
-    };
-};
-
-function elementCreator(element, id, className) {
-    let newElement = document.createElement(element);
-    if (className === null) {
-        newElement.setAttribute('id', id);
-    } else {
-        setAttributes(newElement, {'class': className, 'id': id});
-        // newElement.setAttributes({'class': className, 'id': id});
-    };
-    return newElement;
 };
 
 document.onreadystatechange = clocks();
