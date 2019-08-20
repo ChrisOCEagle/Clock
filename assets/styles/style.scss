@@ -3,7 +3,7 @@
         width: 70%;
     }
 
-    .btn-switch {
+    .btn-switch, .btns, .btn {
         width: 28%;
     }
 }
@@ -13,7 +13,7 @@
         width: 50%;
     }
 
-    .btn-switch {
+    .btn-switch, .btns, .btn {
         width: 20%;
     }
 }
@@ -23,7 +23,7 @@
         width: 35%;
     }
 
-    .btn-switch {
+    .btn-switch, .btns, .btn {
         width: 12%;
     }
 }
@@ -33,7 +33,7 @@
         width: 25%;
     }
 
-    .btn-switch {
+    .btn-switch, .btns, .btn {
         width: 9%;
     }
 }
@@ -43,7 +43,7 @@
         width: 20%;
     }
 
-    .btn-switch {
+    .btn-switch, .btns, .btn {
         width: 7%;
     }
 }
@@ -266,10 +266,24 @@ input:checked + .slider::before {
     transform: translateX(26px);
 }
 
-.btn-switch {
+.btns, .btn {
     margin: auto;
-    padding: 10px 40px 30px 40px;
+    text-align: center;
     display: flex;
+}
+
+.btns {
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 100px 10px;
+}
+
+.btns > * {
+    margin: 0 15px;
+}
+
+.btn-switch, .btn {
+    padding: 10px 40px 30px 40px;
     position: relative;
     justify-content: center;
     align-items: center;
